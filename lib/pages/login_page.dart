@@ -1,18 +1,58 @@
 import 'package:augmenti/components/my_button.dart';
 import 'package:augmenti/components/my_textfield.dart';
 import 'package:augmenti/components/square_tile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   // Text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {
-    debugPrint("user sign in was pressed");
+  void signUserIn() async {
+    debugPrint("Sign in clicked.");
+
+    // loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      debugPrint('login error! $e');
+      Navigator.pop(context);
+      invalidLoginMessage();
+    }
+  }
+
+  void invalidLoginMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Text('Incorrect Password'),
+        );
+      },
+    );
   }
 
   @override
@@ -42,8 +82,8 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 50),
 
                 MyTextField(
-                  controller: usernameController,
-                  hintText: 'Username',
+                  controller: emailController,
+                  hintText: 'email',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
@@ -126,9 +166,13 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text('Not a member?'),
                     SizedBox(width: 4),
-                    Text('Register now',
-                        style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                    Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 )
               ],
