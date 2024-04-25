@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "977737337403",
+    "project_id": "augmenti-965a7",
+    "storage_bucket": "augmenti-965a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977737337403:android:a70a7748a79a0ffdce2a1e",
+        "android_client_info": {
+          "package_name": "com.example.augmenti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmSR8UMewRqAX7cCfC9HWI1xFHaf-0axo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
