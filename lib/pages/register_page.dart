@@ -1,9 +1,9 @@
 import 'package:augmenti/components/my_button.dart';
 import 'package:augmenti/components/my_textfield.dart';
 import 'package:augmenti/components/square_tile.dart';
+import 'package:augmenti/services/AuthService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -163,13 +163,19 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   const SizedBox(height: 50),
 
-                  // google sign in button
-                  const Row(
+                  // google and apple sign in button
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SquareTile(imagePath: 'lib/images/google.png'),
-                      SizedBox(width: 10),
-                      SquareTile(imagePath: 'lib/images/apple.png'),
+                      SquareTile(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        imagePath: 'lib/images/google.png',
+                      ),
+                      const SizedBox(width: 10),
+                      SquareTile(
+                        onTap: () {},
+                        imagePath: 'lib/images/apple.png',
+                      ),
                     ],
                   ),
 
