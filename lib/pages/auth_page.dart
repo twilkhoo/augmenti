@@ -1,5 +1,6 @@
 import 'package:augmenti/pages/home_page.dart';
-import 'package:augmenti/pages/login_or_register_page.dart';
+import 'package:augmenti/pages/landing_page.dart';
+import 'package:augmenti/pages/login_or_register_or_landing_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class AuthPage extends StatelessWidget {
           if (snapshot.hasData) {
             return HomePage();
           } else {
-            return const LoginOrRegisterPage();
+            return const LoginOrRegisterOrLandingPage(); // used to be LoginOrRegisterOrLandingPage()
           }
         },
       ),
