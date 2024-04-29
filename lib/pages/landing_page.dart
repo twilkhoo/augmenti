@@ -51,7 +51,7 @@ class LandingPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 50),
                   Image.asset(
-                    'lib/images/cat.jpg',
+                    'lib/images/example.png',
                     height: 300,
                   ),
                   const SizedBox(height: 50),

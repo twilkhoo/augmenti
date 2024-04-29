@@ -18,6 +18,11 @@
     </dict>
   </array>
   <!-- End of the Google Sign-in Section -->
+
+  <key>NSCameraUsageDescription</key>
+  <string>Using the camera to take pictures to later augment with Inpainting</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Mic not used</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
