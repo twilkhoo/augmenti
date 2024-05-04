@@ -1,16 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void showErrorMessage(String message, BuildContext context) {
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.grey[700],
         title: Center(
           child: Text(
-            message,
-            style: const TextStyle(color: Colors.white),
+            "Error: $message",
+            style: GoogleFonts.openSans(
+              color: Colors.white,
+              fontSize: 16,
+            ),
           ),
         ),
       );

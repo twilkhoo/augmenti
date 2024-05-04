@@ -1,4 +1,6 @@
 import 'package:augmenti/pages/auth_page.dart';
+import 'package:augmenti/pages/camera_page.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -10,19 +12,22 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // debugPrint(DefaultFirebaseOptions.currentPlatform.appId);
+  final cameras = await availableCameras();
 
-  runApp(const MyApp());
+  runApp(MyApp(
+    cameras: cameras,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<CameraDescription> cameras;
+  const MyApp({super.key, required this.cameras});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: AuthPage(cameras: cameras), // used to be AuthPage
     );
   }
 }

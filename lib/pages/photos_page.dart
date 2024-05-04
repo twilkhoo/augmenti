@@ -1,18 +1,17 @@
-import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
-  final List<CameraDescription> cameras;
-
-  HomePage({super.key, required this.cameras});
+class PhotosPage extends StatelessWidget {
+  PhotosPage({super.key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
+
+  // debugPrint(user.uid);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +21,16 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         leading: Transform.translate(
           offset: const Offset(16.0, 14.0),
-          child: Text(
-            'photos',
-            style: GoogleFonts.nanumMyeongjo(
-              fontSize: 16,
-              color: Colors.grey[400],
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'capture',
+              style: GoogleFonts.nanumMyeongjo(
+                fontSize: 16,
+                color: Colors.grey[400],
+              ),
             ),
           ),
         ),
@@ -47,7 +51,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'augmenti',
+                    'id: ${user.uid}',
                     style: GoogleFonts.nanumMyeongjo(
                       color: Colors.grey[400],
                       fontSize: 40,
