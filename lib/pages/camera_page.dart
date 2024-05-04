@@ -1,4 +1,7 @@
 import 'package:augmenti/components/my_button.dart';
+import 'package:augmenti/components/step1_capture.dart';
+import 'package:augmenti/components/step2_augment.dart';
+import 'package:augmenti/components/step3_save.dart';
 import 'package:augmenti/pages/photos_page.dart';
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,87 +71,8 @@ class _CameraPageState extends State<CameraPage> {
           )
         ],
       ),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style: GoogleFonts.nanumMyeongjo(
-                              color: Colors.grey[400],
-                              fontSize: 22,
-                            ),
-                            children: [
-                              const TextSpan(text: 'step 1- '),
-                              TextSpan(
-                                text: 'capture',
-                                style: TextStyle(
-                                  color: Colors.teal[300],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    color: Colors.amber[600],
-                    width: 300,
-                    height: 400,
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MyButton(
-                        onTapFunc: () {},
-                        msgStr: "flip camera",
-                        backColor: Colors.grey[600],
-                      ),
-                      const SizedBox(width: 10),
-                      MyButton(
-                        onTapFunc: () {},
-                        msgStr: "take",
-                        backColor: Colors.teal[400],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  RichText(
-                    text: TextSpan(
-                      style: GoogleFonts.openSans(
-                        color: Colors.grey[400],
-                        fontSize: 14,
-                      ),
-                      children: [
-                        const TextSpan(text: 'or, '),
-                        TextSpan(
-                          text: 'upload a pic',
-                          style: TextStyle(
-                            color: Colors.teal[300],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-          ),
-        ),
+      body: const SafeArea(
+        child: Step3Save(),
       ),
     );
   }
