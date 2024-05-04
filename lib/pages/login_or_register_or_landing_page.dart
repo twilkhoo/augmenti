@@ -21,8 +21,6 @@ class _LoginOrRegisterOrLandingPageState
     extends State<LoginOrRegisterOrLandingPage> {
   Pages currPage = Pages.landing;
 
-  Pages curPage = Pages.landing;
-
   void togglePages(Pages newPage) {
     debugPrint("toggle pages pressed");
     setState(() {

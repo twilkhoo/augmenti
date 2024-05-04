@@ -8,6 +8,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+enum CameraPages {
+  capture,
+  augment,
+  save,
+}
+
 class CameraPage extends StatefulWidget {
   final List<CameraDescription> cameras;
 
@@ -41,6 +47,38 @@ class _CameraPageState extends State<CameraPage> {
     FirebaseAuth.instance.signOut();
   }
 
+  CameraPages currPage = CameraPages.capture;
+
+  void togglePages(CameraPages newPage) {
+    debugPrint("toggle pages pressed");
+    setState(() {
+      currPage = newPage;
+    });
+  }
+
+  void onUploadPic() {
+    debugPrint("uploading pic now...");
+  }
+
+  Widget _buildPage(BuildContext context, CameraPages page) {
+    if (page == CameraPages.capture) {
+      return Step1Capture(
+        onGoAugment: () => togglePages(CameraPages.augment),
+        onUploadPic: onUploadPic,
+      );
+    } else if (page == CameraPages.augment) {
+      return Step2Augment(
+        onGoCapture: () => togglePages(CameraPages.capture),
+        onGoSave: () => togglePages(CameraPages.save),
+      );
+    } else {
+      return Step3Save(
+        onGoCapture: () => togglePages(CameraPages.capture),
+        onGoAugment: () => togglePages(CameraPages.augment),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +89,12 @@ class _CameraPageState extends State<CameraPage> {
           offset: const Offset(16.0, 16.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PhotosPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PhotosPage(),
+                ),
+              );
             },
             child: Text(
               'photos',
@@ -71,8 +113,8 @@ class _CameraPageState extends State<CameraPage> {
           )
         ],
       ),
-      body: const SafeArea(
-        child: Step3Save(),
+      body: SafeArea(
+        child: _buildPage(context, currPage),
       ),
     );
   }

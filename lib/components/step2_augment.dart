@@ -4,7 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Step2Augment extends StatefulWidget {
-  const Step2Augment({super.key});
+  final Function()? onGoCapture;
+  final Function()? onGoSave;
+
+  const Step2Augment({
+    super.key,
+    required this.onGoCapture,
+    required this.onGoSave,
+  });
 
   @override
   State<Step2Augment> createState() => _Step2AugmentState();
@@ -76,27 +83,30 @@ class _Step2AugmentState extends State<Step2Augment> {
               ),
               const SizedBox(height: 10),
               MyButton(
-                onTapFunc: () {},
+                onTapFunc: widget.onGoSave,
                 backColor: Colors.teal[400],
                 msgStr: "augment",
               ),
               const SizedBox(height: 10),
-              RichText(
-                text: TextSpan(
-                  style: GoogleFonts.openSans(
-                    color: Colors.grey[400],
-                    fontSize: 14,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'or,',
+                    style: GoogleFonts.openSans(color: Colors.grey[500]),
                   ),
-                  children: [
-                    const TextSpan(text: 'or, '),
-                    TextSpan(
-                      text: 'go back',
-                      style: TextStyle(
+                  const SizedBox(width: 4),
+                  GestureDetector(
+                    onTap: widget.onGoCapture,
+                    child: Text(
+                      'go back',
+                      style: GoogleFonts.openSans(
                         color: Colors.teal[300],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(height: 50),
             ],

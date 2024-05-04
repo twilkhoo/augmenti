@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Step1Capture extends StatefulWidget {
-  const Step1Capture({super.key});
+  final Function()? onGoAugment;
+  final Function()? onUploadPic;
+
+  const Step1Capture({
+    super.key,
+    required this.onGoAugment,
+    required this.onUploadPic,
+  });
 
   @override
   State<Step1Capture> createState() => _Step1CaptureState();
@@ -62,29 +69,32 @@ class _Step1CaptureState extends State<Step1Capture> {
                   ),
                   const SizedBox(width: 10),
                   MyButton(
-                    onTapFunc: () {},
+                    onTapFunc: widget.onGoAugment,
                     msgStr: "take",
                     backColor: Colors.teal[400],
                   ),
                 ],
               ),
               const SizedBox(height: 10),
-              RichText(
-                text: TextSpan(
-                  style: GoogleFonts.openSans(
-                    color: Colors.grey[400],
-                    fontSize: 14,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'or,',
+                    style: GoogleFonts.openSans(color: Colors.grey[500]),
                   ),
-                  children: [
-                    const TextSpan(text: 'or, '),
-                    TextSpan(
-                      text: 'upload a pic',
-                      style: TextStyle(
+                  const SizedBox(width: 4),
+                  GestureDetector(
+                    onTap: widget.onUploadPic,
+                    child: Text(
+                      'upload a pic',
+                      style: GoogleFonts.openSans(
                         color: Colors.teal[300],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
             ],

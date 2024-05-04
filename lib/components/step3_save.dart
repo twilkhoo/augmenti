@@ -4,14 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Step3Save extends StatefulWidget {
-  const Step3Save({super.key});
+  final Function()? onGoCapture;
+  final Function()? onGoAugment;
+
+  const Step3Save({
+    super.key,
+    required this.onGoCapture,
+    required this.onGoAugment,
+  });
 
   @override
   State<Step3Save> createState() => _Step3SaveState();
 }
 
 class _Step3SaveState extends State<Step3Save> {
-  double _currentBrushWidth = 20;
   final promptController = TextEditingController();
 
   @override
@@ -71,8 +77,14 @@ class _Step3SaveState extends State<Step3Save> {
                   ),
                   const SizedBox(width: 10),
                   MyButton(
-                    onTapFunc: () {},
+                    onTapFunc: widget.onGoAugment,
                     msgStr: "edit",
+                    backColor: Colors.teal[400],
+                  ),
+                  const SizedBox(width: 10),
+                  MyButton(
+                    onTapFunc: widget.onGoCapture,
+                    msgStr: "capture",
                     backColor: Colors.teal[400],
                   ),
                 ],

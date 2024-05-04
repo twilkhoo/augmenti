@@ -146,7 +146,6 @@ class _LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 25),
 
-                    // not a member? register
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
