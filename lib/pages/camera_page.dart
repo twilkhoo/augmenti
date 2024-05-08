@@ -1,4 +1,5 @@
-import 'package:augmenti/components/my_button.dart';
+import 'dart:io';
+
 import 'package:augmenti/components/step1_capture.dart';
 import 'package:augmenti/components/step2_augment.dart';
 import 'package:augmenti/components/step3_save.dart';
@@ -24,24 +25,12 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> {
-  // late CameraController cameraController;
-  // late Future<void> cameraValue;
+  List<File> imagesList =
+      []; // Making it a list to have a single memory location.
 
-  // void startCamera(int camera) {
-  //   cameraController = CameraController(
-  //     widget.cameras[camera],
-  //     ResolutionPreset.high,
-  //     enableAudio: false,
-  //   );
+  List<File> generatedImages = [];
 
-  //   cameraValue = cameraController.initialize();
-  // }
-
-  // @override
-  // void initState() {
-  //   startCamera(0); // 0 means rear camera.
-  //   super.initState();
-  // }
+  final promptController = TextEditingController();
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
@@ -56,25 +45,27 @@ class _CameraPageState extends State<CameraPage> {
     });
   }
 
-  void onUploadPic() {
-    debugPrint("uploading pic now...");
-  }
-
   Widget _buildPage(BuildContext context, CameraPages page) {
     if (page == CameraPages.capture) {
       return Step1Capture(
         onGoAugment: () => togglePages(CameraPages.augment),
-        onUploadPic: onUploadPic,
+        cameras: widget.cameras,
+        imagesList: imagesList,
       );
     } else if (page == CameraPages.augment) {
       return Step2Augment(
         onGoCapture: () => togglePages(CameraPages.capture),
         onGoSave: () => togglePages(CameraPages.save),
+        imagesList: imagesList,
+        generatedImages: generatedImages,
+        promptController: promptController,
       );
     } else {
       return Step3Save(
         onGoCapture: () => togglePages(CameraPages.capture),
         onGoAugment: () => togglePages(CameraPages.augment),
+        generatedImages: generatedImages,
+        promptController: promptController,
       );
     }
   }
@@ -119,34 +110,3 @@ class _CameraPageState extends State<CameraPage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-        // child: FutureBuilder(
-        //     future: cameraValue,
-        //     builder: (context, snapshot) {
-        //       if (snapshot.connectionState == ConnectionState.done) {
-        //         return SizedBox(
-        //           width: 100,
-        //           // height: size.height,
-        //           child: FittedBox(
-        //             fit: BoxFit.cover,
-        //             child: SizedBox(
-        //               width: 300,
-        //               child: CameraPreview(cameraController),
-        //             ),
-        //           ),
-        //         );
-        //       } else {
-        //         return const Center(
-        //           child: CircularProgressIndicator(),
-        //         );
-        //       }
-        //     }),
-
-
