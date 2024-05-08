@@ -46,8 +46,13 @@ The following are some screenshots of the app.
 ## Demo Pics
 All of these were uploaded then augmented, since I have an iPhone and no Mac and can't test on an actual phone lol.
 
+![demo1](https://github.com/twilkhoo/augmenti/assets/30396273/c004feac-09c6-46fa-b0e6-b029f0829763)
 
+![demo2](https://github.com/twilkhoo/augmenti/assets/30396273/0576e104-b72e-4dc9-842a-054cebad67eb)
 
+![demo3](https://github.com/twilkhoo/augmenti/assets/30396273/2219f11f-d58c-4e1a-8871-d7ae6eb3eaf3)
+
+![demo4](https://github.com/twilkhoo/augmenti/assets/30396273/6fce219b-bc50-40cf-86fc-b7b097b2ee7b)
 
 ## Next steps
 - Animations
